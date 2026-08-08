@@ -105,8 +105,8 @@ run: $(ISO)
 	@echo
 	@qemu-system-x86_64 \
 		-M pc \
-		-cpu qemu64 \
-		-m 1024M \
+		-cpu max \
+		-m 4G \
 		-netdev user,id=net0 \
 		-device e1000,netdev=net0 \
 		-device AC97 \
@@ -115,6 +115,8 @@ run: $(ISO)
 		-drive file=$(DISK_IMG),format=raw,if=ide,index=0 \
 		-cdrom $< \
 		-serial stdio 2>&1 \
+		-vga std \
+		-display default \
 		#-no-reboot \
 		#-no-shutdown
 		#
